@@ -9,7 +9,7 @@ This is an empty repository to help setup __Waffle__ boards and use the __Automa
 * Add your repository using the ![Add Project Button][2] button.
 * Customize your board under __Project Settings__/__Columns__:
   - You can add/rename/delete columns depending on your needs.
-    - You can define the columns on which the issues will be automatically moved by the __Automatic Work Tracking__.
+  - You can define the columns on which the issues will be automatically moved by the __Automatic Work Tracking__.
 
 ![Columns Settings][3]
 
