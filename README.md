@@ -21,9 +21,11 @@ Install the [__WaffleBot__][4] on your GitHub account.
 
 When an issues is created, the card automatically goes under the __Backlog__ columns.
 
+This issue can be linked to a existing pull request by using the [Waffle connect Keywords][6] following by the id of the pull request. This will merge the card of the issue and the pull request in __Waffle__.
+
 #### Branches
 
-In order to solve this issue you must create a branch containing the id of the issue:
+In order to solve a new issue using a pull request you must create a branch containing the id of the issue:
 ```
 git checkout -b solve-issue#3
 ```
