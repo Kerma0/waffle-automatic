@@ -47,7 +47,7 @@ This will move the issue cards in the __*Pending Validation*__ column and link t
 
 #### Close the pull request
 
-While closing the pull request all linked issue cards will be moved to the __*Done*__ column.
+When closing the pull request all linked issue cards will be moved to the __*Done*__ column.
 
 ## Snippets
 
