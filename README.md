@@ -1,72 +1,53 @@
-# How to use Waffle Automatic Work Tracking
+# How to use Waffle Automatic Work Tracking at Pryv
 
 This is an empty repository to help setup __Waffle__ boards and use the __Automatic Work Tracking__.
 
+This guide is meant for [__Pryv__][Pryv URL] developers, be aware there are many other ways to use __Waffle__.
+
 ## Setup the Waffle board
 
-* Go to the [__Waffle home page__][1] and log in.
-* Add your repository using the ![Add Project Button][2] button.
-* Customize your board under __Project Settings/Columns__:
-  - You can add/rename/delete columns depending on your needs.
-  - You can define the columns on which the issues and pull requests will be moved by the __Automatic Work Tracking__ (by setting the actions __Work Started__, __New Contributor PRs__ and __New Collaborator PRs__ on the required columns).
+* Go to the [__Waffle home page__][Waffle URL] and __log in__.
+* Add your repository using the ![Add Project Button][Add Project IMG] button.
+* Customize your board in the __Project Settings__ / __Columns__ menu, located in the __Waffle left bar__:
+  - Add the column __*Pending Validation*__ (you must choose a label, create the label __pending__ with color __#4d9a11__).
+  - Define the columns on which the issues and pull requests will be moved by the __Automatic Work Tracking__:
+    * Drag and drop the __Work Started__ action under the __*In Progess*__ column.
+    * Drag and drop the __New Contributor PRs__ action under the __*Pending Validation*__ column.
+    * Drag and drop the __New Collaborator PRs__ action under the __*Pending Validation*__ column.
 
-![Columns Settings Example][3]
+![Columns Settings Example][Columns Settings IMG]
 
 ## Use the Automatic Work Tracking
 
-Install the [__WaffleBot__][4] on your GitHub account.
+Install the [__WaffleBot__][WaffleBot URL] on __GitHub__, be sure to select only the repository you wish to monitor.
 
-#### Close Issues
+#### Create an Issues
 
-When an issues is created, a card is automatically created in the __Backlog__ column.
+The issue can be created either on __GitHub__ or directly in the __Waffle board__.<br>
+It will automatically appear under the __Backlog__ column.
 
-There are 3 different ways to manage an issue:
-* Commit using [GitHub closing Keywords][5] and the id of the issue (e.g: `git commit -m 'This closes #3'`):
-  * This will move the card in the __Done__ column.
-  * It's still possible to connect this issue to a pull request ([Connect Issues](#connect-issues)).
-* Create a new pull request ([Create Pull Requests](#create-pull-requests)):
-  * This will move the issue and pull request cards in the column(s) tagged by the __PRs__ actions.
-  * It's still possible to connect issues to this pull request ([Connect Issues](#connect-issues)).
-  * Closing the pull request will move both cards in the __Done__ column.
-* Connect the issue to an existing pull request ([Connect Issues](#connect-issues))
-  * This will move the issue card in the column(s) tagged by the __PRs__ actions.
-  * Closing the pull request will move both card in either the __Done__ column as a merged card,<br>
-    or the __Done__ column (pull request card) and the __Backlog__ column (issue card).
+Once you're ready to start solving the issue or you current work solves the issue, place it under the __*Ready*__ column.
 
-#### Connect Issues
+#### Working on an Issue
 
-Each time an issue and a pull request are connected, the issue card on Waffle goes under that pull request card as a new merged card. Several issue cards can be linked to a pull request card this way.
+If your current work is related to an issue, you should place this issue to the __*In Progress*__ column:
+  * Manually: simply drag and drop the card in the column.
+  * Automatically: create a new branch containing the id of the issue (e.g: `git checkout -b solve-issue#3`).
 
-In order to connect issues to a pull request, you must use the [Waffle connect Keywords][6]:
-  * In the description of the issue.<br>
-    When closing the pull request, the issue card will go back to the __Backlog__ column.
-  * In the description or the title of the pull request.<br>
-    When closing the pull request, the issue will be moved to the __Done__ column and still be merged with the pull request card.
+Beware, the name of the branch must respect some rules (note that the __'-'__ can be replace by __'_'__):
+  * If the name starts with the id: `3-solve-issue`.
+  * If the name doesn't start with the id: `solve-issue#3` or `solve-#3-issue`.
+  * If the name is path-like and starts with the id: `3-solve/issue`.
+  * If the name is path-like and doesn't starts with the id: `solve/#3-issue`.
 
-It is also possible to use the [GitHub closing Keywords][5] in the description or the title of a pull request to merge the issue and pull request cards. When closing the pull request the merged card will be moved to the __Done__ column.
+#### Create a pull request
 
-#### Create Pull Requests
+While creating a pull request make sure the description of that pull request connects to related issues using [__GitHub closing Keywords__][Closing Keywords URL].<br>
+This will move the issue cards in the __*Pending Validation*__ column and link the pull request to all issue cards it refers to.
 
-Before creating a new pull request, a new branch must be created with the id of the issue:
+#### Close the pull request
 
-```
-git checkout -b solve-issue#3
-```
-
-To be interpreted by the __WaffleBot__, the name of the branch must repect some rules:
-* `3-solve-issue`: the name starts with the id of the issue, no __'#'__ needed.
-* `solve-issue#3`: the name doesn't starts with the id of the issue, the __'#'__ is mendatory.
-* `3-solve/issue`: the name is path-like and starts with the id of the issue, no __'#'__ needed.
-* `solve/#3-issue`: the name is path-like and doesn't starts with the id of the issue,<br>
-                    the issue id must be immediatly after the __'/'__ with a __'#'__.
-
-This will move the card in the column tagged with the __Work Started__ action (here the __In Progress__ column).
-
-When creating a new pull request in order to close an issue, the name or description of that pull request must contain a [GitHub closing Keywords][5] followed by the id of the issue.
-
-This will move the card in the column tagged with either the __New Collaborator PRs__ or __New Contributor PRs__ action (here the __Pending Validation__ column).
-
-To move the card in the __Done__ column, close the pull request. 
+While closing the pull request all linked issue cards will be moved to the __*Done*__ column.
 
 ## Snippets
 
@@ -74,17 +55,18 @@ To move the card in the __Done__ column, close the pull request.
 
 [![Stories in Ready](https://badge.waffle.io/Kerma0/waffle-automatic.svg?label=ready&title=Ready)](http://waffle.io/Kerma0/waffle-automatic)
 
-The link to this badge can be found under __Project Settings/General__
+The link to this badge can be found in the __Project Settings__ / __General__ menu, located in the __Waffle left bar__.
 
 ### Graph
 
 [![Throughput Graph](https://graphs.waffle.io/Kerma0/waffle-automatic/throughput.svg)](https://waffle.io/Kerma0/waffle-automatic/metrics/throughput)
 
-The link to this graph can be found under __Metrics__
+The link to this graph can be found in the __Metrics__ menu, located in the __Waffle left bar__.
 
-[1]: https://waffle.io/
-[2]: https://github.com/Kerma0/waffle-automatic/blob/master/img/02.png
-[3]: https://github.com/Kerma0/waffle-automatic/blob/master/img/01.png
-[4]: https://github.com/integration/wafflebot
-[5]: https://help.github.com/articles/closing-issues-via-commit-messages/#keywords-for-closing-issues
-[6]: https://github.com/waffleio/waffle.io/wiki/FAQs#prs-connect-keywords
+[Pryv URL]: http://pryv.com/
+[Waffle URL]: https://waffle.io/
+[WaffleBot URL]: https://github.com/integration/wafflebot
+[Closing Keywords URL]: https://help.github.com/articles/closing-issues-via-commit-messages/#keywords-for-closing-issues
+
+[Columns Settings IMG]: https://github.com/Kerma0/waffle-automatic/blob/master/img/01.png
+[Add Project IMG]: https://github.com/Kerma0/waffle-automatic/blob/master/img/02.png
