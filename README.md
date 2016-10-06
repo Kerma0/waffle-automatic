@@ -1,4 +1,4 @@
-# Waffle-Test
+# How to use Waffle Automatic Work Tracking
 
 This is an empty repository to help setup __Waffle__ boards and use the __Automatic Work Tracking__.
 
