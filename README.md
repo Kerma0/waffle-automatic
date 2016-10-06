@@ -42,7 +42,7 @@ Beware, the name of the branch must respect some rules (note that the __'-'__ ca
 
 #### Create a pull request
 
-While creating a pull request make sure the description of that pull request connects to related issues using [__GitHub closing Keywords__][Closing Keywords URL].<br>
+While creating the pull request, link the related issues in the description of that pull request using [__GitHub closing Keywords__][Closing Keywords URL].<br>
 This will move the issue cards in the __*Pending Validation*__ column and link the pull request to all issue cards it refers to.
 
 #### Close the pull request
